@@ -4,7 +4,7 @@
 
 CREATE TABLE public.task
 (
-  id integer NOT NULL DEFAULT nextval('task_id_seq'::regclass),
+  id serial NOT NULL,
   name character varying,
   description character varying,
   creation_date timestamp without time zone,
