@@ -9,12 +9,13 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import py.edu.upa.test.business.TaskBC;
 import py.edu.upa.test.entity.Task;
 
-@Path("task")
+@Path("tasks")
 public class ServiceRest {
 
 	@Inject
@@ -48,6 +49,7 @@ public class ServiceRest {
 		}
 	}
 
+//	http://localhost:8080/rest/taks/1
     @GET
     @Path("/{id: \\d+}")
     @Produces({"application/json"})
@@ -62,6 +64,7 @@ public class ServiceRest {
 		}
     }
 
+//    http://localhost:8080/rest/taks/1?filter=xx
     @PUT
     @Path("/{id: \\d+}")
     @Consumes({"application/json"})
@@ -92,6 +95,23 @@ public class ServiceRest {
 					.build();
 		}
     }
+    
+//    http://localhost:8080/rest/tasks/prueba?filter=xx
+//    @GET
+//    @Path("/pruebas")
+//    @Produces({"application/json"})
+//    public Response update(@QueryParam("filter") String filter) {
+//    	System.out.println("=================================");
+//    	System.out.println(filter);
+//    	try {
+//			return Response.ok().entity(bc.getWithFilter(filter)).build();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+//					.entity("ERROR_GENERICO")
+//					.build();
+//		}
+//    }
 	
 	
 

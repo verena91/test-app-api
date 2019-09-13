@@ -18,6 +18,23 @@ public class TaskDAO {
 	EntityManager entityManager;
 	
 	@SuppressWarnings("unchecked")
+	public List<Task> findWithFilter(String filter) {
+
+		Session session = (Session) entityManager.getDelegate();
+		Criteria criteria = session.createCriteria(Task.class);
+		
+		criteria.add(Restrictions.and(
+				Restrictions.ilike("description", filter),
+				Restrictions.or(
+						Restrictions.eq("deleted", false),
+						Restrictions.isNull("deleted")
+				)));
+		
+		return criteria.list();
+
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<Task> find() {
 
 		Session session = (Session) entityManager.getDelegate();

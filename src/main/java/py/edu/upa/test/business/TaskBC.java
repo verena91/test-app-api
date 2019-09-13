@@ -37,5 +37,9 @@ public class TaskBC {
 		dao.delete(id);
 	}
 	
+	public List<Task> getWithFilter(String filter) {
+		return dao.findWithFilter(filter);
+	}
+	
 }
 
