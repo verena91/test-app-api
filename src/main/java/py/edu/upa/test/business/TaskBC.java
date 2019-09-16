@@ -16,7 +16,6 @@ public class TaskBC {
     @EJB
 	private TaskDAO dao;
 	
-
 	public List<Task> find() {
 		return dao.find();
 	}
