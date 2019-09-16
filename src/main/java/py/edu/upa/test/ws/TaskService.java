@@ -16,7 +16,7 @@ import py.edu.upa.test.business.TaskBC;
 import py.edu.upa.test.entity.Task;
 
 @Path("tasks")
-public class ServiceRest {
+public class TaskService {
 
 	@Inject
 	private TaskBC bc;
@@ -97,21 +97,21 @@ public class ServiceRest {
     }
     
 //    http://localhost:8080/rest/tasks/prueba?filter=xx
-//    @GET
-//    @Path("/pruebas")
-//    @Produces({"application/json"})
-//    public Response update(@QueryParam("filter") String filter) {
-//    	System.out.println("=================================");
-//    	System.out.println(filter);
-//    	try {
-//			return Response.ok().entity(bc.getWithFilter(filter)).build();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-//					.entity("ERROR_GENERICO")
-//					.build();
-//		}
-//    }
+    @GET
+    @Path("/pruebas")
+    @Produces({"application/json"})
+    public Response update(@QueryParam("filter") String filter) {
+    	System.out.println("=================================");
+    	System.out.println(filter);
+    	try {
+			return Response.ok().entity(bc.getWithFilter(filter)).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+					.entity("ERROR_GENERICO")
+					.build();
+		}
+    }
 	
 	
 
