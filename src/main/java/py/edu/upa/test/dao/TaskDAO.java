@@ -45,8 +45,13 @@ public class TaskDAO {
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Task.class);
 		
+		// se crea el alias para simular un join
+		// el primer argumento es como está en la clase Task 
+		// el segundo argumento es el alias que se le quiere dar
+		criteria.createAlias("type", "type");
+		
 		criteria.add(Restrictions.and(
-				Restrictions.eq("id_type", 1),
+				Restrictions.eq("type.id", id_type),
 				Restrictions.or(
 						Restrictions.eq("deleted", false),
 						Restrictions.isNull("deleted")
