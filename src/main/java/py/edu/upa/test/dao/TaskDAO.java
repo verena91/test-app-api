@@ -83,6 +83,7 @@ public class TaskDAO {
 		//se asigna el tamaño de la página
 		criteria.setMaxResults(size);
 		
+		// retorna la lista
 		return criteria.list();
 
 	}
