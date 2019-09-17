@@ -8,38 +8,38 @@ import javax.inject.Named;
 
 import py.edu.upa.test.dao.TypeDAO;
 import py.edu.upa.test.entity.Type;
+
 @Named
 @RequestScoped
 public class TypeBC {
-	
-    @EJB
+
+	@EJB
 	private TypeDAO dao;
-	
 
 	public List<Type> find() {
 		return dao.find();
 	}
-	
+
 	public Type findById(Integer id) {
 		return dao.findById(id);
 	}
-	
-	public void insert(Type t){
+
+	public void insert(Type t) {
 		dao.insert(t);
 	}
-	
-	public void update(Integer id, Type t){
+
+	public void update(Integer id, Type t) {
 		dao.update(id, t);
 	}
-	
-	public void delete(Integer id){
+
+	public void delete(Integer id) {
 		dao.delete(id);
 	}
-	
-	
-	public List<Type> getWithFilter(String filter) {
-		return dao.findWithFilter(filter);
-	}
-	
-}
 
+	public List<Type> getWithFilter(String filter) {
+		return dao.findWithFilter(filter);}
+
+		public List<Type> getPaginated(int pageSize,int first) {
+			return dao.getPaginado(pageSize,first );
+	}
+}

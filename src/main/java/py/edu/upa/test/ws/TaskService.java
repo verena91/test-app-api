@@ -28,6 +28,7 @@ public class TaskService {
     @Produces("application/json")
 	public Response getAll() {
 		try {
+			
 			return Response.ok().entity(bc.find()).build();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,7 +81,7 @@ public class TaskService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-					.entity("ERROR_GENERICO")
+					.entity("ERROR_GENERICO" )
 					.build();
 		}
     }
@@ -114,6 +115,8 @@ public class TaskService {
 					.build();
 		}
     }
+    
+    
 	
 	
 
