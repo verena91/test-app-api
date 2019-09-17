@@ -34,6 +34,28 @@ public class TaskDAO {
 
 	}
 	
+	/**
+	 * Obtener lista de tareas filtradas por id_type.
+	 * @param id_type
+	 * @return lista de tareas filtradas por id_type
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Task> findByType(Integer id_type) {
+
+		Session session = (Session) entityManager.getDelegate();
+		Criteria criteria = session.createCriteria(Task.class);
+		
+		criteria.add(Restrictions.and(
+				Restrictions.ilike("id_type", id_type),
+				Restrictions.or(
+						Restrictions.eq("deleted", false),
+						Restrictions.isNull("deleted")
+				)));
+		
+		return criteria.list();
+
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Task> find() {
 

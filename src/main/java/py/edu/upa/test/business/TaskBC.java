@@ -40,5 +40,14 @@ public class TaskBC {
 		return dao.findWithFilter(filter);
 	}
 	
+	/**
+	 * Obtener task filtrando por id_type
+	 * @param id_type
+	 * @return
+	 */
+	public List<Task> getByType(Integer id_type) {
+		return dao.findByType(id_type);
+	}
+	
 }
 

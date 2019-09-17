@@ -1,5 +1,6 @@
 package py.edu.upa.test.ws;
 
+
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -63,7 +64,27 @@ public class TaskService {
 					.build();
 		}
     }
-
+    
+    /**
+     * Obtener taks's por id_type (de type)
+     * @param id_type
+     * @return
+     */
+//	http://localhost:8080/rest/taks/1
+    @GET
+    @Path("/{id_type: \\d+}")
+    @Produces({"application/json"})
+    public Response getByType(@PathParam("id_type") Integer id_type) {
+    	try {
+			return Response.ok().entity(bc.getByType(id_type)).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+					.entity("ERROR_GENERICO")
+					.build();
+		}
+    }
+    
 //    http://localhost:8080/rest/taks/1?filter=xx
     @PUT
     @Path("/{id: \\d+}")
