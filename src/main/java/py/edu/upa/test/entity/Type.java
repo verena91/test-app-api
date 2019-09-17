@@ -13,13 +13,13 @@ public class Type implements Serializable{
     @GeneratedValue(generator = "type_id_seq")
 	private Integer id;
 	
-	@Column(name="nombre")
+	//@Column(name="nombre")
 	private String nombre;
 	
-	@Column(name="descripcion")
+	//@Column(name="descripcion")
 	private String descripcion;
 	
-	@Column(name="delete")
+	//@Column(name="delete")
 	private boolean delete;
 	
 	public Type() {		
