@@ -56,6 +56,37 @@ public class TaskDAO {
 
 	}
 	
+	/**
+	 * Obtener lista de tareas con paginación
+	 * @param id_type
+	 * @return lista de tareas 
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Task> findWithPagination(Integer page,Integer size) {
+
+		//calcular el inicio de la página
+		int registroInicio = 0;
+		registroInicio = (page - 1) * size;
+		
+		Session session = (Session) entityManager.getDelegate();
+		Criteria criteria = session.createCriteria(Task.class);
+		
+		criteria.add(			
+				Restrictions.or(
+						Restrictions.eq("deleted", false),
+						Restrictions.isNull("deleted")
+				));
+		
+		// se asigna el registro de inicio
+		criteria.setFirstResult(registroInicio);
+		
+		//se asigna el tamaño de la página
+		criteria.setMaxResults(size);
+		
+		return criteria.list();
+
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Task> find() {
 
