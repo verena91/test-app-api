@@ -134,13 +134,14 @@ public class TaskService {
 					.build();
 		}
     }
-	
-    /**
-     * Obtener tasks paginando
-     * @param id_type
-     * @return
-     */
-//	http://localhost:8080/rest/taks/pagination
+
+   /**
+    * obtener tasks paginando 
+    * @param page
+    * @param size
+    * @return
+    */
+//	http://localhost:8080/rest/taks/pagination?page=2&size=1
     @GET
     @Path("/pagination")
     @Produces({"application/json"})
