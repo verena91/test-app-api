@@ -2,18 +2,16 @@ package py.edu.upa.test.business;
 
 import java.util.List;
 
-import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 import py.edu.upa.test.dao.TaskDAO;
 import py.edu.upa.test.entity.Task;
 
-@Named
-@RequestScoped
+@Stateless
 public class TaskBC {
 	
-    @EJB
+    @Inject
 	private TaskDAO dao;
 	
 

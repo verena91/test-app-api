@@ -1,5 +1,6 @@
 package py.edu.upa.test.ws;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -16,11 +17,13 @@ import py.edu.upa.test.business.TaskBC;
 import py.edu.upa.test.entity.Task;
 
 @Path("tasks")
+@RequestScoped
 public class TaskService {
 
 	@Inject
 	private TaskBC bc;
 
+//  http://localhost:8080/rest/tasks
 	@GET
     @Produces("application/json")
 	public Response getAll() {
@@ -34,6 +37,7 @@ public class TaskService {
 		}
 	}
 	
+//  http://localhost:8080/rest/tasks
 	@POST
     @Consumes({"application/json"})
     @Produces({"application/json"})
@@ -49,7 +53,7 @@ public class TaskService {
 		}
 	}
 
-//	http://localhost:8080/rest/taks/1
+//	http://localhost:8080/rest/tasks/1
     @GET
     @Path("/{id: \\d+}")
     @Produces({"application/json"})
@@ -64,7 +68,7 @@ public class TaskService {
 		}
     }
 
-//    http://localhost:8080/rest/taks/1?filter=xx
+//    http://localhost:8080/rest/tasks/1
     @PUT
     @Path("/{id: \\d+}")
     @Consumes({"application/json"})
@@ -101,8 +105,6 @@ public class TaskService {
     @Path("/pruebas")
     @Produces({"application/json"})
     public Response update(@QueryParam("filter") String filter) {
-    	System.out.println("=================================");
-    	System.out.println(filter);
     	try {
 			return Response.ok().entity(bc.getWithFilter(filter)).build();
 		} catch (Exception e) {
