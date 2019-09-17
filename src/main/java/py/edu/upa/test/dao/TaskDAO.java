@@ -78,10 +78,10 @@ public class TaskDAO {
 				));
 		
 		// se asigna el registro de inicio
-		//criteria.setFirstResult(registroInicio);
+		criteria.setFirstResult(registroInicio);
 		
 		//se asigna el tamaño de la página
-		//criteria.setMaxResults(size);
+		criteria.setMaxResults(size);
 		
 		// retorna la lista
 		return criteria.list();

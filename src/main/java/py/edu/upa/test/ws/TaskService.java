@@ -94,7 +94,7 @@ public class TaskService {
     @GET
     @Path("/pagination")
     @Produces({"application/json"})
-    public Response getByType(@QueryParam("page") Integer page, @QueryParam("size") Integer size) {
+    public Response getWithPagination(@QueryParam("page") Integer page, @QueryParam("size") Integer size) {
     	try {
 			return Response.ok().entity(bc.getWithPagination(page,size)).build();
 		} catch (Exception e) {
