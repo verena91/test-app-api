@@ -45,15 +45,15 @@ public class TaskDAO {
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Task.class);
 		
-		criteria.add(Restrictions.eq("id_type", id_type));
-		
-		criteria.add(Restrictions.or(
+		criteria.add(Restrictions.and(
+				Restrictions.eq("id_type", id_type),
+				Restrictions.or(
 						Restrictions.eq("deleted", false),
 						Restrictions.isNull("deleted")
+								)	
 									)			
 					);
-		
-		
+				
 		return criteria.list();
 
 	}
