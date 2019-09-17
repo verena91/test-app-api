@@ -42,8 +42,8 @@ public class TypeDAO {
 		Criteria criteria = session.createCriteria(Type.class);
 		
 		criteria.add(Restrictions.or(
-				Restrictions.eq("deleted", false),
-				Restrictions.isNull("deleted")));
+				Restrictions.eq("delete", false),
+				Restrictions.isNull("delete")));
 		
 		return criteria.list();
 
