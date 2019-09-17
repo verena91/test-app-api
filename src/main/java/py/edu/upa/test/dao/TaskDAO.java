@@ -46,7 +46,7 @@ public class TaskDAO {
 		Criteria criteria = session.createCriteria(Task.class);
 		
 		criteria.add(Restrictions.and(
-				Restrictions.eq("id_type", id_type),
+				Restrictions.eq("id_type", 1),
 				Restrictions.or(
 						Restrictions.eq("deleted", false),
 						Restrictions.isNull("deleted")
