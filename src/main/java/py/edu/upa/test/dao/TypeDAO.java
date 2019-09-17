@@ -2,6 +2,7 @@ package py.edu.upa.test.dao;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -12,6 +13,7 @@ import org.hibernate.criterion.Restrictions;
 
 import py.edu.upa.test.entity.Type;
 
+@Stateless
 public class TypeDAO {
 	@PersistenceContext
 	EntityManager entityManager;	

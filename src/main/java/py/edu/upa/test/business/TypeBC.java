@@ -3,11 +3,15 @@ package py.edu.upa.test.business;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 
 import py.edu.upa.test.dao.TypeDAO;
 
 import py.edu.upa.test.entity.Type;
 
+@Named
+@RequestScoped
 public class TypeBC {
 
 	@EJB
