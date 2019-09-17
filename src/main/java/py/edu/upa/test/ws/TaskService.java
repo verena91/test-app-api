@@ -65,26 +65,6 @@ public class TaskService {
 		}
     }
     
-//    /**
-//     * Obtener taks's por id_type (de type)
-//     * @param id_type
-//     * @return
-//     */
-////	http://localhost:8080/rest/taks?id_type=1
-//    @GET
-//    @Path("/bytype/")
-//    @Produces({"application/json"})
-//    public Response getByType(@QueryParam("id_type") Integer id_type) {
-//    	try {
-//			return Response.ok().entity(bc.getByType(id_type)).build();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-//					.entity("ERROR_GENERICO")
-//					.build();
-//		}
-//    }
-    
     /**
      * Obtener taks's por id_type (de type)
      * @param id_type
@@ -94,9 +74,9 @@ public class TaskService {
     @GET
     @Path("/bytype")
     @Produces({"application/json"})
-    public Response getByType() {
+    public Response getByType(@QueryParam("id_type") Integer id_type) {
     	try {
-			return Response.ok().entity(bc.getByType(2)).build();
+			return Response.ok().entity(bc.getByType(id_type)).build();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
