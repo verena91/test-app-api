@@ -90,7 +90,7 @@ public class TaskService {
      * @param id_type
      * @return
      */
-//	http://localhost:8080/rest/taks?id_type=1
+//	http://localhost:8080/rest/taks/pagination
     @GET
     @Path("/pagination")
     @Produces({"application/json"})
