@@ -98,4 +98,13 @@ public class Task implements Serializable {
 		this.updateDate = updateDate;
 	}
 
+	
+	//@ManytoOne
+	//@JoinColumn(name="id_type")
+	//Type type;
+	
+	//@OnetoMany
+	//@JoinColumn(mappedBy="id_type")
+	//List<Type> types;
+	
 }
