@@ -35,7 +35,7 @@ public class TaskDAO {
 	}
 	
 	/**
-	 * Obtener lista de tareas filtradas por id_type.
+	 * Obtener lista de tasks filtradas por id_type.
 	 * @param id_type
 	 * @return lista de tareas filtradas por id_type
 	 */

@@ -49,5 +49,15 @@ public class TaskBC {
 		return dao.findByType(id_type);
 	}
 	
+	/**
+	 * Obtener tasks paginando
+	 * @param page
+	 * @param size
+	 * @return
+	 */
+	public List<Task> getWithPagination(Integer page,Integer size) {
+		return dao.findWithPagination(page, size);
+	}
+	
 }
 
