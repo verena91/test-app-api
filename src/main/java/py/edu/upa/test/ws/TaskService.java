@@ -51,19 +51,19 @@ public class TaskService {
 	}
 
 //	http://localhost:8080/rest/taks/1
-    @GET
-    @Path("/{id: \\d+}")
-    @Produces({"application/json"})
-    public Response get(@PathParam("id") Integer id) {
-    	try {
-			return Response.ok().entity(bc.findById(id)).build();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-					.entity("ERROR_GENERICO")
-					.build();
-		}
-    }
+//    @GET
+//    @Path("/{id: \\d+}")
+//    @Produces({"application/json"})
+//    public Response get(@PathParam("id") Integer id) {
+//    	try {
+//			return Response.ok().entity(bc.findById(id)).build();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+//					.entity("ERROR_GENERICO")
+//					.build();
+//		}
+//    }
     
     /**
      * Obtener taks's por id_type (de type)
