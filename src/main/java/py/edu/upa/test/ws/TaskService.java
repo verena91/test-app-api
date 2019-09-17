@@ -72,9 +72,9 @@ public class TaskService {
      */
 //	http://localhost:8080/rest/taks?id_type=1
     @GET
-    @Path("/byType")
+    @Path("/bytype/{id_type: \\d+}")
     @Produces({"application/json"})
-    public Response getByType(@QueryParam("id_type") Integer id_type) {
+    public Response getByType(@PathParam("id_type") Integer id_type) {
     	try {
 			return Response.ok().entity(bc.getByType(id_type)).build();
 		} catch (Exception e) {
