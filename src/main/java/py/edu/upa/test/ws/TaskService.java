@@ -85,25 +85,6 @@ public class TaskService {
 		}
     }
     
-    /**
-     * Obtener tasks paginando
-     * @param id_type
-     * @return
-     */
-//	http://localhost:8080/rest/taks/pagination
-    @GET
-    @Path("/pagination")
-    @Produces({"application/json"})
-    public Response getWithPagination(@QueryParam("page") Integer page, @QueryParam("size") Integer size) {
-    	try {
-			return Response.ok().entity(bc.getWithPagination(page,size)).build();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-					.entity("ERROR_GENERICO")
-					.build();
-		}
-    }
     
 //    http://localhost:8080/rest/taks/1?filter=xx
     @PUT
@@ -154,6 +135,24 @@ public class TaskService {
 		}
     }
 	
-	
+    /**
+     * Obtener tasks paginando
+     * @param id_type
+     * @return
+     */
+//	http://localhost:8080/rest/taks/pagination
+    @GET
+    @Path("/pagination")
+    @Produces({"application/json"})
+    public Response getWithPagination(@QueryParam("page") Integer page, @QueryParam("size") Integer size) {
+    	try {
+			return Response.ok().entity(bc.getWithPagination(page,size)).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+					.entity("ERROR_GENERICO")
+					.build();
+		}
+    }
 
 }
