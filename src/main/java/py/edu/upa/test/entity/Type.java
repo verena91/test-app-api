@@ -3,16 +3,14 @@ package py.edu.upa.test.entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="type", schema="public")
-
 public class Type implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@Id
 	 @SequenceGenerator(name = "type_id_seq", sequenceName = "type_id_seq", allocationSize = 1, schema= "public")
 	    @GeneratedValue(generator = "type_id_seq")
 		private Integer id;

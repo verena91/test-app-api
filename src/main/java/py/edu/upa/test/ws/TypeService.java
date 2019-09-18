@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 import py.edu.upa.test.business.TypeBC;
 import py.edu.upa.test.entity.Type;
 
-@Path("tasks")
+@Path("types")
 public class TypeService {
 
 	@Inject
@@ -49,7 +49,7 @@ public class TypeService {
 		}
 	}
 
-//	http://localhost:8080/rest/taks/1
+//	http://localhost:8080/rest/types/1
     @GET
     @Path("/{id: \\d+}")
     @Produces({"application/json"})
@@ -64,7 +64,7 @@ public class TypeService {
 		}
     }
 
-//    http://localhost:8080/rest/taks/1?filter=xx
+//    http://localhost:8080/rest/types/1?filter=xx
     @PUT
     @Path("/{id: \\d+}")
     @Consumes({"application/json"})
@@ -96,7 +96,7 @@ public class TypeService {
 		}
     }
     
-//    http://localhost:8080/rest/tasks/prueba?filter=xx
+//    http://localhost:8080/rest/types/prueba?filter=xx
     @GET
     @Path("/pruebas")
     @Produces({"application/json"})

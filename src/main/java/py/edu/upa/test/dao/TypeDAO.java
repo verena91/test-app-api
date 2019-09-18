@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import py.edu.upa.test.entity.Type;
@@ -39,10 +40,10 @@ import py.edu.upa.test.entity.Type;
 
 			Session session = (Session) entityManager.getDelegate();
 			Criteria criteria = session.createCriteria(Type.class);
-			
-			criteria.add(Restrictions.or(
-					Restrictions.eq("deleted", false),
-					Restrictions.isNull("deleted")));
+			Order order = Order.asc("id");
+			criteria.addOrder(order);
+criteria.add(Restrictions.or(
+					Restrictions.eq("deleted", false),					Restrictions.isNull("deleted")));
 			
 			return criteria.list();
 
@@ -74,7 +75,7 @@ import py.edu.upa.test.entity.Type;
 		
 		public void delete(Integer id){
 			Type t = findById(id);
-			t.setDeleted(false);
+			t.setDeleted(true);
 			entityManager.merge(t);
 		}
 	}

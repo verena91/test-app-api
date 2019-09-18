@@ -80,4 +80,19 @@ public class TaskDAO {
 		t.setDeleted(true);
 		entityManager.merge(t);
 	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<Task> findByType(Integer id_type) {
+
+		Session session = (Session) entityManager.getDelegate();
+		Criteria criteria = session.createCriteria(Task.class);
+		criteria.createAlias ("type", "typexd");
+		criteria.add(Restrictions.eq("typexd.id", id_type));
+		//criteria.add(Restrictions.eq("id", id_type));
+		
+		return (List<Task>) criteria.list();
+
+	}
 }

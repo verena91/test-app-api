@@ -37,9 +37,11 @@ public class TaskBC {
 		dao.delete(id);
 	}
 	
-	public List<Task> getWithFilter(String filter) {
-		return dao.findWithFilter(filter);
+	public List<Task> getWithFilter(String findByType) {
+		return dao.findWithFilter(findByType);
 	}
-	
+	public List<Task> getfindByType(int type) {
+		return dao.findByType(type);
+}
 }
 
