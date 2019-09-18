@@ -129,5 +129,22 @@ public class TaskService {
 		}
     }
     
+    
+    
+    @GET
+    @Path("/findPage")
+    @Produces({"application/json"})
+    public Response getFindPage(@QueryParam("pageSize") int amount, @QueryParam("Page") int page) {
+    	
+    	try {
+			return Response.ok().entity(bc.findP(page, amount)).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+					.entity("ERROR_GENERICO")
+					.build();
+		}
+    }
+    
 
 }

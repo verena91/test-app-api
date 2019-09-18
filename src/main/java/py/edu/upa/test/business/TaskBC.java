@@ -46,5 +46,12 @@ public class TaskBC {
 		
 	}
 	
+	
+	public List<Task> findP(Integer page, Integer amount) {
+		return dao.findP(page, amount);
+		
+	}
+	
+	
 }
 

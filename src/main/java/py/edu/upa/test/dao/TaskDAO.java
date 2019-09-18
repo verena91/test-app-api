@@ -59,6 +59,20 @@ public class TaskDAO {
 
 	}
 	
+	
+	@SuppressWarnings("unchecked")
+	public List<Task> findP(Integer page, Integer amount) {
+		Integer start;
+		start = (page - 1) * amount; // el primer registro
+
+		Session session = (Session) entityManager.getDelegate();
+		Criteria criteria = session.createCriteria(Task.class);
+		criteria.setFirstResult(start);
+		criteria.setMaxResults(amount);
+		return (List<Task>) criteria.list(); //al poner algo entre parentesis, delante de algo definido, se convierte en "tipo de dato"
+
+	}
+	
 	public void insert(Task t){
 		entityManager.persist(t);
 	}
