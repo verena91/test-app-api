@@ -14,16 +14,16 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import py.edu.upa.test.business.TaskBC;
-import py.edu.upa.test.entity.Task;
+import py.edu.upa.test.business.TypeBC;
+import py.edu.upa.test.entity.Type;
 
-@Path("tasks")
+@Path("types")
 @RequestScoped
-public class TaskService {
+public class TypeService {
 
 	@Inject
-	private TaskBC bc;
+	private TypeBC bc;
 
-//  http://localhost:8080/rest/tasks
 	@GET
     @Produces("application/json")
 	public Response getAll() {
@@ -37,11 +37,10 @@ public class TaskService {
 		}
 	}
 	
-//  http://localhost:8080/rest/tasks
 	@POST
     @Consumes({"application/json"})
     @Produces({"application/json"})
-	public Response add(Task t) {
+	public Response add(Type t) {
 		try {
 			bc.insert(t);
 			return Response.ok().entity(t).build();
@@ -53,7 +52,6 @@ public class TaskService {
 		}
 	}
 
-//	http://localhost:8080/rest/tasks/1
     @GET
     @Path("/{id: \\d+}")
     @Produces({"application/json"})
@@ -68,12 +66,11 @@ public class TaskService {
 		}
     }
 
-//    http://localhost:8080/rest/tasks/1
     @PUT
     @Path("/{id: \\d+}")
     @Consumes({"application/json"})
     @Produces({"application/json"})
-    public Response update(@PathParam("id") Integer id, Task t) {
+    public Response update(@PathParam("id") Integer id, Type t) {
     	try {
     		bc.update(id,t);
 			return Response.ok().entity("OK").build();
@@ -100,7 +97,6 @@ public class TaskService {
 		}
     }
     
-//    http://localhost:8080/rest/tasks/prueba?filter=xx
     @GET
     @Path("/pruebas")
     @Produces({"application/json"})
@@ -114,38 +110,6 @@ public class TaskService {
 					.build();
 		}
     }
-    
-    @GET
-    @Path("/filtered")
-    @Produces({"application/json"})
-    public Response getFiltered(@QueryParam("type") int type) {
-    	try {
-			return Response.ok().entity(bc.getFilteredByType(type)).build();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-					.entity("ERROR_GENERICO")
-					.build();
-		}
-    }
-    
-//  	http://localhost:8080/ws/rest/tasks/prueba?pageSize=1&first=1&sortField=a&sortOrder=ASC
-	  @GET
-	  @Path("/paginated")
-	  @Produces({"application/json"})
-	  public Response getPaginated(@QueryParam("pageSize") int pageSize,  
-			  @QueryParam("first") int first, 
-			  @QueryParam("sortField") String sortField, 
-			  @QueryParam("sortOrder") String sortOrder) {
-	  	try {
-				return Response.ok().entity(bc.getPaginated(pageSize, first, sortField, sortOrder)).build();
-			} catch (Exception e) {
-				e.printStackTrace();
-				return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-						.entity("ERROR_GENERICO")
-						.build();
-			}
-	  }
 	
 	
 

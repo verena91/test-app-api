@@ -16,38 +16,21 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
-import py.edu.upa.test.entity.Task;
+import py.edu.upa.test.entity.Type;
 
 @Stateless
-public class TaskDAO {
+public class TypeDAO {
 	@PersistenceContext
 	EntityManager entityManager;
 	
 	@SuppressWarnings("unchecked")
-	public List<Task> findWithFilter(String filter) {
+	public List<Type> findWithFilter(String filter) {
 
 		Session session = (Session) entityManager.getDelegate();
-		Criteria criteria = session.createCriteria(Task.class);
+		Criteria criteria = session.createCriteria(Type.class);
 		
 		criteria.add(Restrictions.and(
-				Restrictions.ilike("description", filter),
-				Restrictions.or(
-						Restrictions.eq("deleted", false),
-						Restrictions.isNull("deleted")
-				)));
-		
-		return criteria.list();
-
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Task> getFilteredByType(int filter) {
-
-		Session session = (Session) entityManager.getDelegate();
-		Criteria criteria = session.createCriteria(Task.class);
-		criteria.createAlias("type", "pepe");
-		criteria.add(Restrictions.and(
-				Restrictions.eq("pepe.id", filter),
+				Restrictions.ilike("name", filter),
 				Restrictions.or(
 						Restrictions.eq("deleted", false),
 						Restrictions.isNull("deleted")
@@ -59,10 +42,10 @@ public class TaskDAO {
 
 	
 	@SuppressWarnings("unchecked")
-	public List<Task> find() {
+	public List<Type> find() {
 
 		Session session = (Session) entityManager.getDelegate();
-		Criteria criteria = session.createCriteria(Task.class);
+		Criteria criteria = session.createCriteria(Type.class);
 		
 		criteria.add(Restrictions.or(
 				Restrictions.eq("deleted", false),
@@ -72,48 +55,46 @@ public class TaskDAO {
 
 	}
 	
-	public Task findById(Integer id) {
+	public Type findById(Integer id) {
 
 		Session session = (Session) entityManager.getDelegate();
-		Criteria criteria = session.createCriteria(Task.class);
+		Criteria criteria = session.createCriteria(Type.class);
 		
 		criteria.add(Restrictions.eq("id", id));
 		
-		return (Task) criteria.uniqueResult();
+		return (Type) criteria.uniqueResult();
 
 	}
 	
-	public void insert(Task t){
+	public void insert(Type t){
 		entityManager.persist(t);
 	}
 	
-	public void update(Integer id, Task task){
-		Task t = findById(id);
-		t.setCreationDate(task.getCreationDate());
-		t.setDescription(task.getDescription());
-		t.setDeleted(task.getDeleted());
-		t.setFile(task.getFile());
-		t.setLimitDate(task.getLimitDate());
-		t.setName(task.getName());
-		t.setUpdateDate(task.getUpdateDate());
+	public void update(Integer id, Type type){
+		Type t = findById(id);
+		t.setDescription(type.getDescription());
+		t.setDeleted(type.getDeleted());
+		t.setName(type.getName());
 		entityManager.merge(t);
 	}
 	
 	public void delete(Integer id){
-		Task t = findById(id);
+		Type t = findById(id);
 		t.setDeleted(true);
 		entityManager.merge(t);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Task> getPaginated(int pageSize, int first,
-			String sortField, String sortOrder) { // sortOrder = ASC, DESC
+	public List<Type> getPaginated(int pageSize, int first,
+			String sortField, String sortOrder) {
 		Session session = (Session) entityManager.getDelegate();
-		Criteria criteria = session.createCriteria(Task.class);
+		Criteria criteria = session.createCriteria(Type.class);
 		// add order by
 		if(sortField != null) {	
 			Order order = Order.asc(sortField);
 			if (sortOrder.equals("DESC")){
+				order = Order.desc(sortField);
+			} else {
 				order = Order.desc(sortField);
 			}
 			criteria.addOrder(order);

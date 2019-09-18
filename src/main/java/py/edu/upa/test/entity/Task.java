@@ -30,6 +30,10 @@ public class Task implements Serializable {
 
 	@Column(name="update_date")
 	private Timestamp updateDate;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_type")
+	private Type type;
 
 	public Task() {
 	}
@@ -97,5 +101,14 @@ public class Task implements Serializable {
 	public void setUpdateDate(Timestamp updateDate) {
 		this.updateDate = updateDate;
 	}
+
+	public Type getType() {
+		return type;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
+	}
+	
 
 }
