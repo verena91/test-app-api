@@ -6,7 +6,6 @@ import javax.persistence.PersistenceContext;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
-
 import py.edu.upa.test.business.TaskBC;
 import py.edu.upa.test.entity.Task;
 
@@ -114,24 +113,17 @@ public class TaskService {
 
 		}
 	}
-}
-//  http://localhost:8080/rest/tasks/paginated?filter=xx
-// @GET
-// @Path("/paginated")
-// @Produces({"application/json"})
-// public Response getPaginated(@QueryParam("PageSize") int PagSize,
-// @QueryParam("first") int first,
-// @QueryParam("sortField") String sortField,
-// @QueryParam("sortOrder") String sortOrder) {
-// try {
-// return Response.ok().entity(bc.getPaginated(PagSize, first, sortField,
-// sortOrder)).build;
-// } catch (Exception e) {
-// e.printStackTrace();
-// return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-// .entity("ERROR_GENERICO")
-// .build();
 
-// }
-// }
-//}
+//  http://localhost:8080/rest/tasks/paginated?filter=xx
+	@GET
+	@Path("/paginated")
+	@Produces({ "application/json" })
+	public Response getPaginated(@QueryParam("PageSize") int PagSize, @QueryParam("page") int page) {
+		try {
+			return Response.ok().entity(bc.getPaginated(page, PagSize)).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("ERROR_GENERICO").build();
+		}
+	}
+}
