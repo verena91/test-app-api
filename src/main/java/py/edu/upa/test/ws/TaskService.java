@@ -28,7 +28,7 @@ public class TaskService {
     @Produces("application/json")
 	public Response getAll() {
 		try {
-			
+			System.out.println("Prueba");
 			return Response.ok().entity(bc.find()).build();
 		} catch (Exception e) {
 			e.printStackTrace();

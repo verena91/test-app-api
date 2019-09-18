@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
@@ -25,8 +24,9 @@ public class TypeDAO {
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Type.class);
 
-		criteria.add(Restrictions.and(Restrictions.ilike("description", filter),
-				Restrictions.or(Restrictions.eq("deleted", false), Restrictions.isNull("deleted"))));
+		// criteria.add(Restrictions.and(Restrictions.ilike("description", filter),
+		// Restrictions.or(Restrictions.eq("deleted", false),
+		// Restrictions.isNull("deleted"))));
 
 		return criteria.list();
 
@@ -48,9 +48,8 @@ public class TypeDAO {
 
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Type.class);
-
-		criteria.add(Restrictions.or(Restrictions.eq("deleted", false), Restrictions.isNull("deleted")));
-
+		// criteria.add(Restrictions.or(Restrictions.eq("deleted", false),
+		// Restrictions.isNull("deleted")));
 		return criteria.list();
 
 	}
@@ -68,7 +67,7 @@ public class TypeDAO {
 	}
 
 	public void delete(Type t) {
-		entityManager.persist(t);
+		entityManager.remove(t);
 	}
 
 	public void update(Integer id, Type type) {
