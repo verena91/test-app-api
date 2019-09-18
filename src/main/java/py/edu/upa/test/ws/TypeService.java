@@ -49,7 +49,7 @@ public class TypeService {
 		}
 	}
 
-//	http://localhost:8080/rest/taks/1
+//	http://localhost:8080/rest/type/1
     @GET
     @Path("/{id: \\d+}")
     @Produces({"application/json"})
@@ -96,7 +96,7 @@ public class TypeService {
 		}
     }
     
-//    http://localhost:8080/rest/Types/prueba?filter=xx
+//    http://localhost:8080/rest/types/prueba?filter=xx
     @GET
     @Path("/pruebas")
     @Produces({"application/json"})

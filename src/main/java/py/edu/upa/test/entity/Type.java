@@ -3,7 +3,7 @@ package py.edu.upa.test.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,26 +19,26 @@ public class Type implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-    @SequenceGenerator(name = "type_id_seq", sequenceName = "type_id_seq", allocationSize = 1, schema= "public")
-    @GeneratedValue(generator = "type_id_seq")
-	@Column(name="type_id")
-	private Integer typeid;
+    @SequenceGenerator(name = "type_id_type_seq", sequenceName = "type_id_type_seq", allocationSize = 1, schema= "public")
+    @GeneratedValue(generator = "type_id_type_seq")
+	
+	private Integer id;
 	private String nombre;
 	private String description;
 	private boolean deleted;
 	
 	public Type() { 
-		
 	}
 
 
-	public Integer getTypeid() {
-		return typeid;
+	public Integer getId() {
+		return id;
 	}
 
 
-	public void setTypeid(Integer typeid) {
-		this.typeid = typeid;
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 

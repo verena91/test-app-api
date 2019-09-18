@@ -49,7 +49,7 @@ public class TaskService {
 		}
 	}
 
-//	http://localhost:8080/rest/taks/1
+//	http://localhost:8080/rest/tasks/1
     @GET
     @Path("/{id: \\d+}")
     @Produces({"application/json"})
@@ -64,7 +64,7 @@ public class TaskService {
 		}
     }
 
-//    http://localhost:8080/rest/taks/1?filter=xx
+//    http://localhost:8080/ws/rest/tasks/1?filter=xx
     @PUT
     @Path("/{id: \\d+}")
     @Consumes({"application/json"})
@@ -113,6 +113,21 @@ public class TaskService {
 		}
     }
 	
-	
+    @GET
+    @Path("/findByType")
+    @Produces({"application/json"})
+    public Response get(@QueryParam("id_type") int findByType) {
+    	System.out.println("=================================");
+    	System.out.println(findByType);
+    	try {
+			return Response.ok().entity(bc.getfindByType(findByType)).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+					.entity("ERROR_GENERICO")
+					.build();
+		}
+    }
+    
 
 }

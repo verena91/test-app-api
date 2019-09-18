@@ -5,16 +5,20 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name="task", schema="public")
+@Table(name = "task", schema = "public")
 public class Task implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @SequenceGenerator(name = "task_id_seq", sequenceName = "task_id_seq", allocationSize = 1, schema= "public")
-    @GeneratedValue(generator = "task_id_seq")
+	@SequenceGenerator(name = "task_id_seq", sequenceName = "task_id_seq", allocationSize = 1, schema = "public")
+	@GeneratedValue(generator = "task_id_seq")
 	private Integer id;
 
-	@Column(name="creation_date")
+	@ManyToOne
+	@JoinColumn(name = "id_type")
+	private Type type;
+
+	@Column(name = "creation_date")
 	private Timestamp creationDate;
 
 	private Boolean deleted;
@@ -23,14 +27,16 @@ public class Task implements Serializable {
 
 	private byte[] file;
 
-	@Column(name="limit_date")
+	@Column(name = "limit_date")
 	private Timestamp limitDate;
 
 	private String name;
 
-	@Column(name="update_date")
+	@Column(name = "update_date")
 	private Timestamp updateDate;
 
+
+	
 	public Task() {
 	}
 
@@ -98,15 +104,21 @@ public class Task implements Serializable {
 		this.updateDate = updateDate;
 	}
 
-	
-	@ManyToOne
-	@JoinColumn(name="id_type")
-	Type type;
-	
-	
-	//@OneToMany
-//	@JoinColumn(mappedBy="Id_type")
-	//List<Type> types;
+	public Type getType() {
+		return type;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
+	}
 
 	
+
+	
+	
+
+	// @OneToMany
+//	@JoinColumn(mappedBy="Id_type")
+	// List<Type> types;
+
 }

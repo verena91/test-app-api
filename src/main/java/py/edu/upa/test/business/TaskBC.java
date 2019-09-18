@@ -41,5 +41,10 @@ public class TaskBC {
 		return dao.findWithFilter(filter);
 	}
 	
+	public List<Task> getfindByType(Integer type) {
+		return dao.findByType(type);
+		
+	}
+	
 }
 

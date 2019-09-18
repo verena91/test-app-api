@@ -10,7 +10,8 @@ package py.edu.upa.test.dao;
 
 	import org.hibernate.Criteria;
 	import org.hibernate.Session;
-	import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 	import py.edu.upa.test.entity.Type;
 
@@ -41,7 +42,8 @@ package py.edu.upa.test.dao;
 
 			Session session = (Session) entityManager.getDelegate();
 			Criteria criteria = session.createCriteria(Type.class);
-			
+			Order order = Order.asc("id");
+			criteria.addOrder(order);
 			criteria.add(Restrictions.or(
 					Restrictions.eq("deleted", false),
 					Restrictions.isNull("deleted")));
@@ -69,13 +71,13 @@ package py.edu.upa.test.dao;
 			Type t = findById(id);
 			t.setDescription(type.getDescription());
 			t.setNombre(type.getNombre());
-			t.setTypeid(type.getTypeid());
+			t.setId(type.getId());
 			t.setDeleted(type.isDeleted());
 			entityManager.merge(t);
 		}
 		public void delete(Integer id){
 			Type t = findById(id);
-			t.setDeleted(false);
+			t.setDeleted(true);
 			entityManager.merge(t);
 			
 		}
