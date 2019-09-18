@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import py.edu.upa.test.dao.TaskDAO;
 import py.edu.upa.test.entity.Task;
+import py.edu.upa.test.entity.Type;
 
 @Stateless
 public class TaskBC {
@@ -37,6 +38,10 @@ public class TaskBC {
 	
 	public List<Task> getWithFilter(String filter) {
 		return dao.findWithFilter(filter);
+	}
+	
+	public List<Type> byType(int id){
+		return dao.findByType(id);
 	}
 	
 }

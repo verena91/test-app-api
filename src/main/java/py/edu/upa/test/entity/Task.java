@@ -16,8 +16,8 @@ public class Task implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "id_type")
-	private Type type;
-	
+	private Type type;	
+
 	@Column(name="creation_date")
 	private Timestamp creationDate;
 

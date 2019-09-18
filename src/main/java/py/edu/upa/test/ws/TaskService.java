@@ -25,99 +25,96 @@ public class TaskService {
 
 //  http://localhost:8080/rest/tasks
 	@GET
-    @Produces("application/json")
+	@Produces("application/json")
 	public Response getAll() {
 		try {
 			System.out.println("Prueba");
 			return Response.ok().entity(bc.find()).build();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-					.entity("ERROR_GENERICO")
-					.build();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("ERROR_GENERICO").build();
 		}
 	}
-	
+
 //  http://localhost:8080/rest/tasks
 	@POST
-    @Consumes({"application/json"})
-    @Produces({"application/json"})
+	@Consumes({ "application/json" })
+	@Produces({ "application/json" })
 	public Response add(Task t) {
 		try {
 			bc.insert(t);
 			return Response.ok().entity(t).build();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-					.entity("ERROR_GENERICO")
-					.build();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("ERROR_GENERICO").build();
 		}
 	}
 
 //	http://localhost:8080/rest/tasks/1
-    @GET
-    @Path("/{id: \\d+}")
-    @Produces({"application/json"})
-    public Response get(@PathParam("id") Integer id) {
-    	try {
+	@GET
+	@Path("/{id: \\d+}")
+	@Produces({ "application/json" })
+	public Response get(@PathParam("id") Integer id) {
+		try {
 			return Response.ok().entity(bc.findById(id)).build();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-					.entity("ERROR_GENERICO")
-					.build();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("ERROR_GENERICO").build();
 		}
-    }
+	}
 
 //    http://localhost:8080/rest/tasks/1
-    @PUT
-    @Path("/{id: \\d+}")
-    @Consumes({"application/json"})
-    @Produces({"application/json"})
-    public Response update(@PathParam("id") Integer id, Task t) {
-    	try {
-    		bc.update(id,t);
+	@PUT
+	@Path("/{id: \\d+}")
+	@Consumes({ "application/json" })
+	@Produces({ "application/json" })
+	public Response update(@PathParam("id") Integer id, Task t) {
+		try {
+			bc.update(id, t);
 			return Response.ok().entity("OK").build();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-					.entity("ERROR_GENERICO" )
-					.build();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("ERROR_GENERICO").build();
 		}
-    }
+	}
 
-    @DELETE
-    @Path("/{id: \\d+}")
-    @Produces({"application/json"})
-    public Response delete(@PathParam("id") Integer id) {
-    	try {
-    		bc.delete(id);
+	@DELETE
+	@Path("/{id: \\d+}")
+	@Produces({ "application/json" })
+	public Response delete(@PathParam("id") Integer id) {
+		try {
+			bc.delete(id);
 			return Response.ok().entity("OK").build();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-					.entity("ERROR_GENERICO")
-					.build();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("ERROR_GENERICO").build();
 		}
-    }
-    
+	}
+
 //    http://localhost:8080/rest/tasks/prueba?filter=xx
-    @GET
-    @Path("/pruebas")
-    @Produces({"application/json"})
-    public Response update(@QueryParam("filter") String filter) {
-    	try {
+	@GET
+	@Path("/pruebas")
+	@Produces({ "application/json" })
+	public Response update(@QueryParam("filter") String filter) {
+		try {
 			return Response.ok().entity(bc.getWithFilter(filter)).build();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-					.entity("ERROR_GENERICO")
-					.build();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("ERROR_GENERICO").build();
 		}
-    }
-    
-    
-	
-	
+	}
 
+//	http://localhost:8080/ws/rest/types
+	@GET
+	@Path("/byType")
+	@Produces({ "application/json" })
+	public Response getByType(@QueryParam("id") Integer id) {
+		try {
+			return Response.ok().entity(bc.byType(id)).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("ERROR_GENERICO").build();
+		}
+
+	}
 }

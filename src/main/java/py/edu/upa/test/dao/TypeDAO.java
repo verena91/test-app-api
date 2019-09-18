@@ -45,7 +45,6 @@ public class TypeDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<Type> find() {
-
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Type.class);
 		// criteria.add(Restrictions.or(Restrictions.eq("deleted", false),
@@ -62,6 +61,9 @@ public class TypeDAO {
 		return (Type) criteria.uniqueResult();
 	}
 
+	
+	
+	
 	public void insert(Type t) {
 		entityManager.persist(t);
 	}

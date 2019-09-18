@@ -40,6 +40,7 @@ public class TypeBC {
 		return dao.findWithFilter(filter);}
 
 		public List<Type> getPaginated(int pageSize,int first) {
-			return dao.getPaginado(pageSize,first );
-	}
+			return dao.getPaginado(pageSize,first );}
+			
+		
 }

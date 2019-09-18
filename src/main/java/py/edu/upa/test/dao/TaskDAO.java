@@ -11,6 +11,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 import py.edu.upa.test.entity.Task;
+import py.edu.upa.test.entity.Type;
 
 @Stateless
 public class TaskDAO {
@@ -53,7 +54,8 @@ public class TaskDAO {
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Task.class);
 		
-		criteria.add(Restrictions.eq("id", id));
+		criteria.createAlias("type", "type");
+		criteria.add(Restrictions.eq("task.id_type", id));
 		
 		return (Task) criteria.uniqueResult();
 
@@ -79,5 +81,12 @@ public class TaskDAO {
 		Task t = findById(id);
 		t.setDeleted(true);
 		entityManager.merge(t);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Type> findByType(int id) {
+		Session session = (Session) entityManager.getDelegate();
+		Criteria criteria = session.createCriteria(Type.class);
+		criteria.add(Restrictions.eq("type.id",id));
+		return(List<Type>) criteria.list();
 	}
 }

@@ -99,8 +99,8 @@ public class TypeService {
 			e.printStackTrace();
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("ERROR_GENERICO").build();
 		}
-		}
-	
+	}
+
 	@GET
 	@Path("/paginated")
 	@Produces("application/json")
@@ -115,7 +115,4 @@ public class TypeService {
 			e.printStackTrace();
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("ERROR_GENERICO").build();
 		}
-		}
-	
-	
-}
+		}}
