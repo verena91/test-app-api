@@ -13,6 +13,12 @@ public class Task implements Serializable {
     @SequenceGenerator(name = "task_id_seq", sequenceName = "task_id_seq", allocationSize = 1, schema= "public")
     @GeneratedValue(generator = "task_id_seq")
 	private Integer id;
+	
+	@ManyToOne
+	@JoinColumn(name="id_type")
+	Type type;
+	
+	
 
 	@Column(name="creation_date")
 	private Timestamp creationDate;
