@@ -22,6 +22,7 @@
 			it in the source at src/test/resources/arquillian-ds.xml -->
 		<jta-data-source>java:/TestDS</jta-data-source>
 		<class>py.edu.upa.test.entity.Task</class>
+		<class>py.edu.upa.test.entity.Type</class>
 		<properties>
 			<!-- Properties for Hibernate -->
 			<property name="hibernate.hbm2ddl.auto" value="validate" />

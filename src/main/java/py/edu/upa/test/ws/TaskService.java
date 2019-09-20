@@ -112,7 +112,20 @@ public class TaskService {
 					.build();
 		}
     }
-	
-	
+	//5.a obtener tarea por tipo
+    @GET
+    @Path("/pruebas")
+    @Produces({"application/json"})
+    public Response getIdType(@QueryParam("id_type") Integer id_type) {
+    	try {
+			return Response.ok().entity(bc.findById(id_type)).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+					.entity("ERROR_GENERICO")
+					.build();
+		}
+    }
+	//5.b. Obtener tareas por paginacion
 
 }

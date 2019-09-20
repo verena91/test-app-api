@@ -23,6 +23,8 @@ public class Task implements Serializable {
 
 	private byte[] file;
 
+
+	
 	@Column(name="limit_date")
 	private Timestamp limitDate;
 
@@ -31,6 +33,8 @@ public class Task implements Serializable {
 	@Column(name="update_date")
 	private Timestamp updateDate;
 
+	private Integer id_type;
+	
 	public Task() {
 	}
 
@@ -98,4 +102,10 @@ public class Task implements Serializable {
 		this.updateDate = updateDate;
 	}
 
+	public Integer getIdType() {
+		return this.id_type;
+	}
+	public void setIdType(Integer id_type) {
+		this.id_type = id_type;
+	}
 }
