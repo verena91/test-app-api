@@ -1,6 +1,6 @@
 package py.edu.upa.test.ws;
 
-
+import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -156,4 +156,67 @@ public class TaskService {
 		}
     }
 
+    /**
+     * obtener tasks paginando y con cantidad de tasks
+     * @param page
+     * @param size
+     * @return
+     */
+// 	http://localhost:8080/rest/taks/pagination?page=2&size=1
+     @GET
+     @Path("/paginationAndQuantity")
+     @Produces({"application/json"})
+     public Response getWithPaginationAndQuantity(@QueryParam("page") Integer page, @QueryParam("size") Integer size) {
+     
+    	 try {
+//    		 return Response.ok().entity(bc.getWithPagination(page,size)).build();
+    		TasksAndQuantity tareasYcantidad = new TasksAndQuantity(); 
+    		 // se reciben todas las tareas
+    		List<Task> tareas;
+    		tareas = bc.getWithPagination(page,size);	
+    		// obtener todas 
+    		tareasYcantidad.setTasks(tareas);
+    		
+    		// se guarda la cantidad total de tareas, si es que hay
+    		int cantidadTotalTareas = 0;
+    		cantidadTotalTareas = bc.find().size();
+    		
+    		if (tareas.size()>0) {
+				tareasYcantidad.setQuantity(cantidadTotalTareas);
+			}
+    		else {
+    			tareasYcantidad.setQuantity(0);
+			}
+    		
+    		// se retorna toda la entidad que tiene la lista de tareas y la cantidad de tareas
+ 			return Response.ok().entity(tareasYcantidad).build();
+ 		} catch (Exception e) {
+ 			e.printStackTrace();
+ 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+ 					.entity("ERROR_GENERICO")
+ 					.build();
+ 		}
+     }
+    
+     /*
+      * esta clase contiene una lista de tareas y la cantidad de tareas
+      */
+     class TasksAndQuantity{
+    	 private List<Task> tasks;
+    	 private int quantity;
+		public List<Task> getTasks() {
+			return tasks;
+		}
+		public void setTasks(List<Task> tasks) {
+			this.tasks = tasks;
+		}
+		public int getQuantity() {
+			return quantity;
+		}
+		public void setQuantity(int quantity) {
+			this.quantity = quantity;
+		}
+    			
+     }
+     
 }

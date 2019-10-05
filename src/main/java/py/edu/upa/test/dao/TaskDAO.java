@@ -133,6 +133,7 @@ public class TaskDAO {
 		t.setLimitDate(task.getLimitDate());
 		t.setName(task.getName());
 		t.setUpdateDate(task.getUpdateDate());
+		t.setDone(task.isDone());
 		entityManager.merge(t);
 	}
 	

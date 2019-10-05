@@ -35,6 +35,8 @@ public class Task implements Serializable {
 	@JoinColumn(name="id_type")
 	Type type;
 	
+	private boolean done;
+	
 	public Task() {
 	}
 
@@ -108,6 +110,14 @@ public class Task implements Serializable {
 
 	public void setType(Type type) {
 		this.type = type;
+	}
+
+	public boolean isDone() {
+		return done;
+	}
+
+	public void setDone(boolean done) {
+		this.done = done;
 	}
 
 }

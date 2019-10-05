@@ -47,6 +47,14 @@ public class Type implements Serializable{
 
 	public void setDelete(boolean delete) {
 		this.delete = delete;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}	
 	
 }

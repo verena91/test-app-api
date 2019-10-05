@@ -15,7 +15,7 @@ import py.edu.upa.test.entity.Type;
 
 @Stateless
 public class TypeDAO {
-	@PersistenceContext
+	@PersistenceContext // inyecta el entity manager
 	EntityManager entityManager;	
 
 	@SuppressWarnings("unchecked")
@@ -51,7 +51,7 @@ public class TypeDAO {
 	
 	public Type findById(Integer id) {
 
-		Session session = (Session) entityManager.getDelegate();
+		Session session = (Session) entityManager.getDelegate(); 
 		Criteria criteria = session.createCriteria(Type.class);
 		
 		criteria.add(Restrictions.eq("id", id));
