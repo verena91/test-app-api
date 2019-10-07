@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name="task", schema="public")
-public class Task implements Serializable {
+public class Producto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -26,6 +26,8 @@ public class Task implements Serializable {
 	private String description;
 
 	private byte[] file;
+	
+	private Boolean estado;
 
 	@Column(name="limit_date")
 	private Timestamp limitDate;
@@ -35,7 +37,7 @@ public class Task implements Serializable {
 	@Column(name="update_date")
 	private Timestamp updateDate;
 
-	public Task() {
+	public Producto() {
 	}
 
 	public Integer getId() {
@@ -101,5 +103,27 @@ public class Task implements Serializable {
 	public void setUpdateDate(Timestamp updateDate) {
 		this.updateDate = updateDate;
 	}
+
+	public Type getType() {
+		return type;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
+	}
+
+	public Boolean getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Boolean estado) {
+		this.estado = estado;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
 
 }

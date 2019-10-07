@@ -7,7 +7,6 @@ import javax.inject.Inject;
 
 import py.edu.upa.test.dao.TaskDAO;
 import py.edu.upa.test.entity.Task;
-import py.edu.upa.test.entity.Type;
 
 @Stateless
 public class TaskBC {
@@ -40,9 +39,11 @@ public class TaskBC {
 		return dao.findWithFilter(filter);
 	}
 	
-	public List<Type> byType(int id){
+	public List<Task> byType(int id){
 		return dao.findByType(id);
 	}
-	
+
+	public List<Task> getPaginated(int pageSize,int first) {
+		return dao.getPaginado(first,pageSize );}
 }
 

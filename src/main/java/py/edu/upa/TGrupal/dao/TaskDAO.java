@@ -11,7 +11,6 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 import py.edu.upa.test.entity.Task;
-import py.edu.upa.test.entity.Type;
 
 @Stateless
 public class TaskDAO {
@@ -54,8 +53,7 @@ public class TaskDAO {
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Task.class);
 		
-		criteria.createAlias("type", "type");
-		criteria.add(Restrictions.eq("task.id_type", id));
+		criteria.add(Restrictions.eq("id", id));
 		
 		return (Task) criteria.uniqueResult();
 
@@ -74,6 +72,7 @@ public class TaskDAO {
 		t.setLimitDate(task.getLimitDate());
 		t.setName(task.getName());
 		t.setUpdateDate(task.getUpdateDate());
+		t.setEstado(task.getEstado());
 		entityManager.merge(t);
 	}
 	
@@ -83,10 +82,21 @@ public class TaskDAO {
 		entityManager.merge(t);
 	}
 	@SuppressWarnings("unchecked")
-	public List<Type> findByType(int id) {
+	public List<Task> findByType(int id) {
 		Session session = (Session) entityManager.getDelegate();
-		Criteria criteria = session.createCriteria(Type.class);
+		Criteria criteria = session.createCriteria(Task.class);
 		criteria.add(Restrictions.eq("type.id",id));
-		return(List<Type>) criteria.list();
+		return(List<Task>) criteria.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Task> getPaginado(int pageSize, int first) {
+		Session session = (Session) entityManager.getDelegate();
+		Criteria criteria = session.createCriteria(Task.class);
+		criteria.setFirstResult(first);
+		criteria.setMaxResults(pageSize);
+		session.getTransaction().commit();
+
+		return criteria.list();
 	}
 }
