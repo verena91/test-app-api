@@ -1,41 +1,38 @@
-package py.edu.upa.test.entity;
+package py.edu.upa.TGrupal.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name="task", schema="public")
+@Table(name = "producto", schema = "public")
 public class Producto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @SequenceGenerator(name = "task_id_seq", sequenceName = "task_id_seq", allocationSize = 1, schema= "public")
-    @GeneratedValue(generator = "task_id_seq")
+	@SequenceGenerator(name = "producto_id_producto_seq", sequenceName = "producto_id_producto_seq", allocationSize = 1, schema = "public")
+	@GeneratedValue(generator = "producto_id_producto_seq")
 	private Integer id;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id_type")
-	private Type type;	
+	private Producto producto;
 
-	@Column(name="creation_date")
-	private Timestamp creationDate;
-
-	private Boolean deleted;
+	private Boolean delete;
 
 	private String description;
 
-	private byte[] file;
-	
 	private Boolean estado;
 
-	@Column(name="limit_date")
+	@Column(name = "limit_date")
 	private Timestamp limitDate;
 
 	private String name;
 
-	@Column(name="update_date")
+	@Column(name = "update_date")
 	private Timestamp updateDate;
+
+	private String descripcion;
 
 	public Producto() {
 	}
@@ -48,36 +45,20 @@ public class Producto implements Serializable {
 		this.id = id;
 	}
 
-	public Timestamp getCreationDate() {
-		return this.creationDate;
-	}
-
-	public void setCreationDate(Timestamp creationDate) {
-		this.creationDate = creationDate;
-	}
-
 	public Boolean getDeleted() {
-		return this.deleted;
+		return this.delete;
 	}
 
-	public void setDeleted(Boolean deleted) {
-		this.deleted = deleted;
+	public void setDeleted(Boolean delete) {
+		this.delete = delete;
 	}
 
 	public String getDescription() {
 		return this.description;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public byte[] getFile() {
-		return this.file;
-	}
-
-	public void setFile(byte[] file) {
-		this.file = file;
+	public void setDescription(String descripcion) {
+		this.setDescripcion(descripcion);
 	}
 
 	public Timestamp getLimitDate() {
@@ -104,12 +85,12 @@ public class Producto implements Serializable {
 		this.updateDate = updateDate;
 	}
 
-	public Type getType() {
-		return type;
+	public Producto getProducto() {
+		return producto;
 	}
 
-	public void setType(Type type) {
-		this.type = type;
+	public void setType(Producto producto) {
+		this.producto = producto;
 	}
 
 	public Boolean getEstado() {
@@ -123,7 +104,13 @@ public class Producto implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
 }
