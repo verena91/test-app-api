@@ -43,9 +43,9 @@ public class TaskBC {
 		return dao.getFilteredByType(filter);
 	}
 	
-	public List<Task> getPaginated(int pageSize, int first,
+	public List<Task> getPaginated(int pageSize, int page,
 			String sortField, String sortOrder) {
-		return dao.getPaginated(pageSize, first, sortField, sortOrder);
+		return dao.getPaginated(pageSize, page, sortField, sortOrder);
 	}
 	
 }

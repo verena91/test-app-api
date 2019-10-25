@@ -1,5 +1,7 @@
 package py.edu.upa.test.ws;
 
+import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -16,7 +18,7 @@ import javax.ws.rs.core.Response;
 import py.edu.upa.test.business.TaskBC;
 import py.edu.upa.test.entity.Task;
 
-@Path("tasks")
+@Path("productos")
 @RequestScoped
 public class TaskService {
 
@@ -134,11 +136,16 @@ public class TaskService {
 	  @Path("/paginated")
 	  @Produces({"application/json"})
 	  public Response getPaginated(@QueryParam("pageSize") int pageSize,  
-			  @QueryParam("first") int first, 
+			  @QueryParam("page") int page, 
 			  @QueryParam("sortField") String sortField, 
 			  @QueryParam("sortOrder") String sortOrder) {
 	  	try {
-				return Response.ok().entity(bc.getPaginated(pageSize, first, sortField, sortOrder)).build();
+	  			List<Task> tasks = bc.getPaginated(pageSize, page, sortField, sortOrder);
+	  			PaginatedTask paginatedList = new PaginatedTask();
+	  			paginatedList.setTasks(tasks);
+	  			List<Task> todos = bc.find(); // bc.getCount();
+	  			paginatedList.setCount(todos != null ? todos.size() : 0);
+				return Response.ok().entity(paginatedList).build();
 			} catch (Exception e) {
 				e.printStackTrace();
 				return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
@@ -146,7 +153,24 @@ public class TaskService {
 						.build();
 			}
 	  }
-	
-	
 
+}
+
+class PaginatedTask {
+	
+	List<Task> tasks;
+	int count;
+	public List<Task> getTasks() {
+		return tasks;
+	}
+	public void setTasks(List<Task> tasks) {
+		this.tasks = tasks;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	
 }

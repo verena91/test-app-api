@@ -96,6 +96,8 @@ public class TaskDAO {
 		t.setLimitDate(task.getLimitDate());
 		t.setName(task.getName());
 		t.setUpdateDate(task.getUpdateDate());
+		t.setResuelta(task.getResuelta());
+		t.setType(task.getType());
 		entityManager.merge(t);
 	}
 	
@@ -106,10 +108,13 @@ public class TaskDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Task> getPaginated(int pageSize, int first,
+	public List<Task> getPaginated(int pageSize, int page,
 			String sortField, String sortOrder) { // sortOrder = ASC, DESC
 		Session session = (Session) entityManager.getDelegate();
 		Criteria criteria = session.createCriteria(Task.class);
+		criteria.add(Restrictions.or(
+				Restrictions.eq("deleted", false),
+				Restrictions.isNull("deleted")));
 		// add order by
 		if(sortField != null) {	
 			Order order = Order.asc(sortField);
@@ -123,7 +128,7 @@ public class TaskDAO {
 		}
 
 		// add limit, offset
-		criteria.setFirstResult(first);
+		criteria.setFirstResult(page * pageSize);
 		criteria.setMaxResults(pageSize);
 		return criteria.list();
 
