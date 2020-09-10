@@ -25,6 +25,7 @@ public class TaskService {
 
 //  http://localhost:8080/rest/tasks
 	@GET
+	// prueba para que falle
     @Produces("application/json")
 	public Response getAll() {
 		try {
@@ -39,6 +40,7 @@ public class TaskService {
 	
 //  http://localhost:8080/rest/tasks
 	@POST
+	// prueba que no deberia fallar
     @Consumes({"application/json"})
     @Produces({"application/json"})
 	public Response add(Task t) {
